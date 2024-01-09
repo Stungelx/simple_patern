@@ -22,7 +22,7 @@ class AbstractFactory(ABC):
         return result
 
 
-class ConcreteFactory1(AbstractFactory):
+class ModernFactory(AbstractFactory):
     def create_table(self) -> Table:
         return ModernTable()
 
@@ -30,7 +30,7 @@ class ConcreteFactory1(AbstractFactory):
         return ModernChair()
 
 
-class ConcreteFactory2(AbstractFactory):
+class VictorianFactory(AbstractFactory):
     def create_table(self) -> Table:
         return VictorianTable()
 
@@ -103,22 +103,23 @@ class VictorianChair(Chair):
 
 
 def client_code(factory: AbstractFactory) -> None:
-    product_a = factory.create_table()
-    product_b = factory.create_chair()
+    table = factory.create_table()
+    chair = factory.create_chair()
     text_table = factory.some_operation()
     text_chair = factory.some_operation1()
 
-    print(f"{product_b.useful_function_chair()}")
+    print(f"{chair.useful_function_chair()}")
     print(f"{text_chair}")
     print(f"{text_table}")
-    print(f"{product_b.another_useful_function_chair(product_a)}")
+    print(f"{chair.another_useful_function_chair(table)}")
 
 
-if __name__ == "__main__":
-    print("Client: Testing client code with the first factory type:")
-    client_code(ConcreteFactory1())
 
-    print("\n")
+print("\n")
+print("Client: Testing client code with the Modern factory type:")
+client_code(ModernFactory())
 
-    print("Client: Testing the same client code with the second factory type:")
-    client_code(ConcreteFactory2())
+print("\n")
+
+print("Client: Testing the same client code with the Victorian factory type:")
+client_code(VictorianFactory())
