@@ -1,37 +1,59 @@
-class Factory:
-    def manufacturing(self):
+from __future__ import annotations
+from abc import ABC, abstractmethod
+
+
+class Creator(ABC):
+
+    @abstractmethod
+    def factory_method(self):
+
         pass
 
+    def some_operation(self) -> str:
+        product = self.factory_method()
+        result = f"Operation finished. {product.operation()}"
 
-class Table(Factory):
-    def manufacturing(self):
-        print('Стіл зроблено')
-
-
-class Chair(Factory):
-    def manufacturing(self):
-        print('Стілець виготовлено')
+        return result
 
 
-class Creator:
-    def create(self) -> Factory:
-        pass
-
-
-class TableCreator(Creator):
-    def create(self):
-        return Table()
-
-
-class ChairCreator(Creator):
-    def create(self):
+class CreatorChair(Creator):
+    def factory_method(self) -> Product:
         return Chair()
 
 
-table_creator = TableCreator()
-table = table_creator.create()
-table.manufacturing()
+class CreatorTable(Creator):
+    def factory_method(self) -> Product:
 
-chair_creator = ChairCreator()
-chair = chair_creator.create()
-chair.manufacturing()
+        return Table()
+
+
+class Product(ABC):
+    @abstractmethod
+    def operation(self) -> str:
+        pass
+
+
+class Table(Product):
+    def operation(self) -> str:
+        return str('Table was created')
+
+
+class Chair(Product):
+    def operation(self) -> str:
+        return "{Chair was created}"
+
+
+def client_code(creator: Creator) -> None:
+    print(f"Client: Starting operation of the creating Product.\n"
+          f"{creator.some_operation()}", end="")
+
+
+if __name__ == "__main__":
+    print("App: Launched with the CreatorChair.")
+    client_code(CreatorChair())
+    print("\n")
+
+    print("App: Launched with the CreatorTable.")
+    client_code(CreatorTable())
+
+
