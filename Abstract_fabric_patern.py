@@ -123,3 +123,4 @@ print("\n")
 
 print("Client: Testing the same client code with the Victorian factory type:")
 client_code(VictorianFactory())
+#https://app.diagrams.net/#HStungelx%2Fsimple_patern%2Fmaster%2FAbstract_factory_diagram.drawio
