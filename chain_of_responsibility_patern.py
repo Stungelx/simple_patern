@@ -48,7 +48,7 @@ class PostsHandler(AbstractHandler):
                 cursor = dbu.cursor()
                 dtb1 = cursor.execute("""SELECT * FROM posts""")
                 result = dtb1.fetchall()
-                return str([dict(zip(['id', 'name', 'email', 'gender', 'status', ], row)) for row in result])
+                return str([dict(zip(['id', 'user_id', 'title', 'body', ], row)) for row in result])
 
         else:
             return super().handle(request)
@@ -63,7 +63,7 @@ class PasswordsHandler(AbstractHandler):
 
 
 def client_code(handler: Handler) -> None:
-    for tabs in ["posts", "users", "passwords"]:
+    for tabs in ["users", "posts", "passwords"]:
         print(f"\nClient: Who wants a {tabs}?")
         result = handler.handle(tabs)
         if result:
@@ -78,9 +78,10 @@ if __name__ == "__main__":
     dog = PasswordsHandler()
 
     users.set_next(posts).set_next(dog)
-    print("Chain: Users > Passwords > Passwords")
+    print("Chain: users > posts > passwords")
     client_code(users)
     print("\n")
 
-    print("Subchain: Passwords > Passwords")
+    print("Subchain: posts > passwords")
     client_code(posts)
+#https://app.diagrams.net/#HStungelx%2Fsimple_patern%2Fmaster%2Fchain_of_responsibility_patern_diagram.drawio
