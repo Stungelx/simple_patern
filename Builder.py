@@ -148,3 +148,4 @@ if __name__ == "__main__":
         builder.lamination()
         builder.product.list_parts()
         print("\n")
+#https://app.diagrams.net/#HStungelx%2Fsimple_patern%2Fmaster%2FBuilder_patern.drawio
