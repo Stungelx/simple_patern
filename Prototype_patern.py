@@ -1,14 +1,6 @@
 import copy
 
 
-class SelfReferencingEntity:
-    def __init__(self):
-        self.parent = None
-
-    def set_parent(self, parent):
-        self.parent = parent
-
-
 class VictorianSet:
     def __init__(self, tabletop_type, number_of_legs, number_of_chairs, lamination):
         self.tabletop_type = tabletop_type
