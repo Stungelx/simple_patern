@@ -26,8 +26,8 @@ class VictorianSet:
         return new
 
     def __str__(self):
-        return f"tabletop_type={self.tabletop_type}, number_of_legs={self.number_of_legs}, " \
-               f"number_of_chairs={self.number_of_chairs}, lamination={self.lamination}"
+        return f"tabletop type: {self.tabletop_type}, number of legs: {self.number_of_legs}, " \
+               f"number of chairs: {self.number_of_chairs}, lamination: {self.lamination}"
 
 
 if __name__ == "__main__":
